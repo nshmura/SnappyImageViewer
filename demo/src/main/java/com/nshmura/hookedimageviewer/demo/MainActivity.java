@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final ImageView imageView = (ImageView) findViewById(R.id.image);
-        final int resId = R.drawable.sample2;
+        final int resId = R.drawable.sample;
         imageView.setImageResource(resId);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
