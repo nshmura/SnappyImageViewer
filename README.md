@@ -1,8 +1,12 @@
 # SnappyImageViewer
 
-Android Image Viewer insired by StackOverflow's with swipe-to-dimiss and moving animations.
+Android Image Viewer inspired by StackOverflow's with swipe-to-dimiss and moving animations.
 
 <img src="assets/capture.gif" alt="Gif Animation File">
+
+
+## Demo
+<a href="https://play.google.com/store/apps/details?id=com.nshmura.snappyimageviewer.demo"><img src="assets/googleplay.png"/></a>
 
 
 ## Getting Started
@@ -44,8 +48,14 @@ Setup the `SnappyImageViewer`:
 
 ## TODO
 - Pinch to Zoom
-- Many Images with ViewPager
-- `ImageViwerActivity` in library
+- Embed in ViewPager
+- Add `ImageViwerActivity` in library
+
+
+## Contributions
+
+Your contributions always welcome!
+
 
 ## License
 ```

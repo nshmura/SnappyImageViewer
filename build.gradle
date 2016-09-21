@@ -41,5 +41,5 @@ ext {
 
     POM_ARTIFACT_ID = "snappyimageviewer"
     POM_ARTIFACT_NAME = "SnappyImageViewer"
-    POM_DESCRIPTION = "An Android library that report notification of StrictMode violation."
+    POM_DESCRIPTION = "Android Image Viewer inspired by StackOverflow's with swipe-to-dimiss and moving animations."
 }

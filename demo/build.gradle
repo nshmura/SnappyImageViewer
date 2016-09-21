@@ -39,6 +39,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'com.nshmura:snappyimageviwer:1.0.0'
-    //compile project(":library")
+    //compile 'com.nshmura:snappyimageviwer:1.0.0'
+    compile project(":library")
 }
