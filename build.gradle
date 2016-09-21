@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.3'
+        classpath 'com.android.tools.build:gradle:2.2.0'
         classpath 'com.novoda:bintray-release:0.3.4'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -32,18 +32,14 @@ ext {
     javaVersion = JavaVersion.VERSION_1_7
     supportLibraryVersion = '24.2.1'
     versionCode = 1
-    versionName = "0.0.1"
+    versionName = "1.0.0"
 
     POM_DEVELOPER_ID = "nshmura"
     POM_GROUP = "com.nshmura"
     POM_VERSION_NAME = versionName
-    POM_URL = "https://github.com/nshmura/strictmode-notifier"
+    POM_URL = "https://github.com/nshmura/SnappyImageViewer"
 
-    POM_ARTIFACT_ID = "strictmode-notifier"
-    POM_ARTIFACT_NAME = "strictmode-notifier"
+    POM_ARTIFACT_ID = "snappyimageviewer"
+    POM_ARTIFACT_NAME = "SnappyImageViewer"
     POM_DESCRIPTION = "An Android library that report notification of StrictMode violation."
-
-    POM_ARTIFACT_ID_NO_OP = "strictmode-notifier-no-op"
-    POM_ARTIFACT_NAME_NO_OP = "strictmode-notifier-no-op"
-    POM_DESCRIPTION_NO_OP = "No op strictmode-notifier"
 }

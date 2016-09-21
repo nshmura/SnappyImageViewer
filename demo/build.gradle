@@ -5,16 +5,31 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.nshmura.hookedimageviewer.demo"
+        applicationId "com.nshmura.snappyimageviewer.demo"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
     }
+
+    signingConfigs {
+        release {
+            if (hasProperty('NSHMURA_KEYSTORE')) {
+                storeFile file(NSHMURA_KEYSTORE)
+                keyAlias NSHMURA_KEYALIAS
+                storePassword NSHMURA_KEYSTOREPASSWORD
+                keyPassword NSHMURA_KEYALIASPASSWORD
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (hasProperty('NSHMURA_KEYSTORE')) {
+                signingConfig signingConfigs.release
+            }
         }
     }
 }
@@ -24,5 +39,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile project(":library")
+    compile 'com.nshmura:snappyimageviwer:1.0.0'
+    //compile project(":library")
 }

@@ -1,4 +1,4 @@
-package com.nshmura.hookedimageviewer;
+package com.nshmura.snappyimageviewer;
 
 public class DegreeVelocityTracker {
     private float degreeVelocity;

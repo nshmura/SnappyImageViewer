@@ -1,4 +1,4 @@
-package com.nshmura.hookedimageviewer;
+package com.nshmura.snappyimageviewer;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HookedImageViewer extends FrameLayout {
+public class SnappyImageViewer extends FrameLayout {
 
     public static final int INVALID_POINTER = -1;
 
@@ -36,7 +36,7 @@ public class HookedImageViewer extends FrameLayout {
     private List<OnClosedListener> onClosedListeners = new ArrayList<>();
 
     //for drag
-    private HookedDragHelper hookedDragHelper;
+    private SnappyDragHelper snappyDragHelper;
     private int activePointerId;
     private VelocityTracker velocityTracker;
     private int maxVelocity;
@@ -50,23 +50,23 @@ public class HookedImageViewer extends FrameLayout {
         void onClosed();
     }
 
-    public HookedImageViewer(Context context) {
+    public SnappyImageViewer(Context context) {
         super(context);
         init();
     }
 
-    public HookedImageViewer(Context context, AttributeSet attrs) {
+    public SnappyImageViewer(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public HookedImageViewer(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SnappyImageViewer(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public HookedImageViewer(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SnappyImageViewer(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
@@ -132,12 +132,12 @@ public class HookedImageViewer extends FrameLayout {
         imgInitMatrix.postScale(scale, scale);
         imgInitMatrix.postTranslate(x, y);
 
-        if (hookedDragHelper != null) {
-            hookedDragHelper.cancelAnimation();
+        if (snappyDragHelper != null) {
+            snappyDragHelper.cancelAnimation();
         }
 
-        hookedDragHelper = new HookedDragHelper(getWidth(), getHeight(), (int) imageWidth, (int) imageHeight, imgInitMatrix,
-                new HookedDragHelper.Listener() {
+        snappyDragHelper = new SnappyDragHelper(getWidth(), getHeight(), (int) imageWidth, (int) imageHeight, imgInitMatrix,
+                new SnappyDragHelper.Listener() {
                     @Override
                     public void onMove(Matrix bmpMatrix) {
                         imageView.setImageMatrix(bmpMatrix);
@@ -188,7 +188,7 @@ public class HookedImageViewer extends FrameLayout {
                 activePointerId = event.getPointerId(event.getActionIndex());
                 currentX = event.getX();
                 currentY = event.getY();
-                hookedDragHelper.onTouch();
+                snappyDragHelper.onTouch();
                 break;
             }
 
@@ -198,7 +198,7 @@ public class HookedImageViewer extends FrameLayout {
 
                 if (activePointerId == event.getPointerId(event.getActionIndex())) {
                     if ((state == STATE_IDLE && inImageView(x, y)) || state == STATE_DRAGGING) {
-                        hookedDragHelper.onMove(currentX, currentY, x, y);
+                        snappyDragHelper.onMove(currentX, currentY, x, y);
                         setState(STATE_DRAGGING);
                     }
 
@@ -223,7 +223,7 @@ public class HookedImageViewer extends FrameLayout {
                         velocityTracker = null;
                     }
                     if (state == STATE_DRAGGING) {
-                        hookedDragHelper.onRelease(xvel, yvel);
+                        snappyDragHelper.onRelease(xvel, yvel);
                         setState(STATE_SETTLING);
                     }
                     activePointerId = INVALID_POINTER;

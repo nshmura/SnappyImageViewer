@@ -1,4 +1,4 @@
-package com.nshmura.hookedimageviewer.demo;
+package com.nshmura.snappyimageviewer.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -11,6 +11,12 @@ android {
     }
 }
 
-dependencies {
-    testCompile 'junit:junit:4.12'
+publish {
+    userOrg = rootProject.ext.POM_DEVELOPER_ID
+    groupId = rootProject.ext.POM_GROUP
+    artifactId = rootProject.ext.POM_ARTIFACT_ID
+    uploadName = rootProject.ext.POM_ARTIFACT_NAME
+    publishVersion = rootProject.ext.POM_VERSION_NAME
+    desc = rootProject.ext.POM_DESCRIPTION
+    website = rootProject.ext.POM_URL
 }

@@ -1,4 +1,4 @@
-package com.nshmura.hookedimageviewer;
+package com.nshmura.snappyimageviewer;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -6,7 +6,7 @@ import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.view.animation.OvershootInterpolator;
 
-class HookedDragHelper {
+class SnappyDragHelper {
 
     private float CLOSE_VELOCITY_THRESHOLD = 2500;
 
@@ -34,7 +34,7 @@ class HookedDragHelper {
         void onCastAwayed();
     }
 
-    HookedDragHelper(int viewerWidth, int viewerHeight, int imageWidth, int imageHeight,
+    SnappyDragHelper(int viewerWidth, int viewerHeight, int imageWidth, int imageHeight,
                      Matrix imgInitMatrix, Listener listener) {
         this.viewerWidth = viewerWidth;
         this.viewerHeight = viewerHeight;

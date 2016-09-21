@@ -1,6 +1,6 @@
-package com.nshmura.hookedimageviewer.demo;
+package com.nshmura.snappyimageviewer.demo;
 
-import com.nshmura.hookedimageviewer.HookedImageViewer;
+import com.nshmura.snappyimageviewer.SnappyImageViewer;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -39,9 +39,9 @@ public class ImageViewerActivity extends AppCompatActivity {
 
         int resId = getIntent().getIntExtra(EXTRA_IMAGE_RESOUCE_ID, 0);
 
-        HookedImageViewer hookedImageViewer = (HookedImageViewer) findViewById(R.id.hooked_image_viewer);
-        hookedImageViewer.setImageResource(resId);
-        hookedImageViewer.addOnClosedListener(new HookedImageViewer.OnClosedListener() {
+        SnappyImageViewer snappyImageViewer = (SnappyImageViewer) findViewById(R.id.snappy_image_viewer);
+        snappyImageViewer.setImageResource(resId);
+        snappyImageViewer.addOnClosedListener(new SnappyImageViewer.OnClosedListener() {
             @Override
             public void onClosed() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -50,6 +50,6 @@ public class ImageViewerActivity extends AppCompatActivity {
                 ActivityCompat.finishAfterTransition(ImageViewerActivity.this);
             }
         });
-        ViewCompat.setTransitionName(hookedImageViewer.getImageView(), TRANSITION_NAME_PHOTO);
+        ViewCompat.setTransitionName(snappyImageViewer.getImageView(), TRANSITION_NAME_PHOTO);
     }
 }
