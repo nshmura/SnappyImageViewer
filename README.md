@@ -19,7 +19,7 @@ In your `build.gradle`:
  }
 
  dependencies {
-    compile 'com.nshmura:snappyimageviwer:1.0.0'
+    compile 'com.nshmura:snappyimageviewer:1.0.0'
  }
 ```
 
