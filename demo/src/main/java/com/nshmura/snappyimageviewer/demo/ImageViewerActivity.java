@@ -1,6 +1,7 @@
 package com.nshmura.snappyimageviewer.demo;
 
 import com.nshmura.snappyimageviewer.SnappyImageViewer;
+import com.squareup.picasso.Picasso;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,12 +18,12 @@ import android.widget.ImageView;
 
 public class ImageViewerActivity extends AppCompatActivity {
 
-    private static final String EXTRA_IMAGE_RESOUCE_ID = "EXTRA_IMAGE_RESOUCE_ID";
+    private static final String EXTRA_IMAGE_URL = "EXTRA_IMAGE_URL";
     private static final String TRANSITION_NAME_PHOTO = "TRANSITION_NAME_PHOTO";
 
-    public static void start(Activity activity, int resId, ImageView imageView) {
+    public static void start(Activity activity, String uri, ImageView imageView) {
         Intent intent = new Intent(activity, ImageViewerActivity.class);
-        intent.putExtra(EXTRA_IMAGE_RESOUCE_ID, resId);
+        intent.putExtra(EXTRA_IMAGE_URL, uri);
 
         //noinspection unchecked
         Bundle options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,
@@ -37,10 +38,14 @@ public class ImageViewerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_viewer);
 
-        int resId = getIntent().getIntExtra(EXTRA_IMAGE_RESOUCE_ID, 0);
+        String uri = getIntent().getStringExtra(EXTRA_IMAGE_URL);
 
         SnappyImageViewer snappyImageViewer = (SnappyImageViewer) findViewById(R.id.snappy_image_viewer);
-        snappyImageViewer.setImageResource(resId);
+
+        Picasso.with(this)
+                .load(uri)
+                .into(snappyImageViewer.getImageView());
+
         snappyImageViewer.addOnClosedListener(new SnappyImageViewer.OnClosedListener() {
             @Override
             public void onClosed() {

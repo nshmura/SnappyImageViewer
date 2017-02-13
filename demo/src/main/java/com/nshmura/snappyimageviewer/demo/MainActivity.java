@@ -1,5 +1,7 @@
 package com.nshmura.snappyimageviewer.demo;
 
+import com.squareup.picasso.Picasso;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,12 +15,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final ImageView imageView = (ImageView) findViewById(R.id.image);
-        final int resId = R.drawable.sample;
-        imageView.setImageResource(resId);
+
+        final String uri = "https://developer.android.com/images/home/nougat_bg.jpg";
+
+        Picasso.with(this)
+                .load(uri)
+                .into(imageView);
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageViewerActivity.start(MainActivity.this, resId, imageView);
+                ImageViewerActivity.start(MainActivity.this, uri, imageView);
             }
         });
     }
