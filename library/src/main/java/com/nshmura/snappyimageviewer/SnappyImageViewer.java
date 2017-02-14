@@ -32,7 +32,7 @@ public class SnappyImageViewer extends FrameLayout {
 
     private int state = STATE_IDLE;
 
-    private ImageView imageView;
+    private SnappyImageView imageView;
     private List<OnClosedListener> onClosedListeners = new ArrayList<>();
 
     //for drag
@@ -75,12 +75,26 @@ public class SnappyImageViewer extends FrameLayout {
         final ViewConfiguration vc = ViewConfiguration.get(getContext());
         maxVelocity = vc.getScaledMaximumFlingVelocity();
 
-        imageView = new ImageView(getContext());
+        imageView = new SnappyImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.MATRIX);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         imageView.setLayoutParams(layoutParams);
         addView(imageView);
+
+        imageView.setListener(new SnappyImageView.Listener() {
+            @Override
+            public void onImageChanged() {
+                updateSize();
+            }
+
+            @Override
+            public void onDraw() {
+                if (snappyDragHelper == null && imageView.getDrawable() != null) {
+                    updateSize();
+                }
+            }
+        });
     }
 
     public void addOnClosedListener(OnClosedListener listener) {
@@ -89,22 +103,18 @@ public class SnappyImageViewer extends FrameLayout {
 
     public void setImageBitmap(Bitmap bitmap) {
         imageView.setImageBitmap(bitmap);
-        updateSize();
     }
 
     public void setImageResource(int resId) {
         imageView.setImageResource(resId);
-        updateSize();
     }
 
     public void setImageURI(Uri uri) {
         imageView.setImageURI(uri);
-        updateSize();
     }
 
     public void setImageDrawable(Drawable drawable) {
         imageView.setImageDrawable(drawable);
-        updateSize();
     }
 
     public ImageView getImageView() {
@@ -112,6 +122,10 @@ public class SnappyImageViewer extends FrameLayout {
     }
 
     public void updateSize() {
+        if (imageView.getDrawable() == null) {
+            return;
+        }
+
         float imageWidth = imageView.getDrawable().getIntrinsicWidth();
         float imageHeight = imageView.getDrawable().getIntrinsicHeight();
 
@@ -178,6 +192,9 @@ public class SnappyImageViewer extends FrameLayout {
     }
 
     private void handleTouchEventForDrag(MotionEvent event) {
+        if (imageView.getDrawable() == null) {
+            return;
+        }
         if (velocityTracker == null) {
             velocityTracker = VelocityTracker.obtain();
         }
